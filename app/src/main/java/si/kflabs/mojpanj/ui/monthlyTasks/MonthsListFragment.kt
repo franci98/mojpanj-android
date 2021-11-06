@@ -97,8 +97,13 @@ fun MonthsListScreen(
                             style = MaterialTheme.typography.h6,
                         )
                         selectedMonth.tasks.forEach { task ->
-                            Text(text = task.title)
-                            Text(text = task.description)
+                            Text(
+                                text = task.title,
+                                style = MaterialTheme.typography.subtitle1,
+                            )
+                            Text(text = task.description,
+                                    style = MaterialTheme.typography.body1,
+                            )
                         }
                     }
                 }
