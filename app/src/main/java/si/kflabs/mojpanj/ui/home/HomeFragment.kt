@@ -1,4 +1,4 @@
-package si.kflabs.mojpanj.ui.monthlyTasks
+package si.kflabs.mojpanj.ui.home
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -7,81 +7,74 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.viewModels
 import si.kflabs.mojpanj.R
-import java.time.Month
+import si.kflabs.mojpanj.ui.monthlyTasks.MonthsListFragmentScreen
 
-class MonthsListFragment : Fragment() {
-    private val viewModel: MonthsListViewModel by viewModels()
+class HomeFragment : Fragment() {
+    private val viewModel: HomeViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         return ComposeView(requireContext()).apply {
             setContent {
-                MonthsListFragmentScreen(viewModel = viewModel)
+                HomeFragmentScreen(viewModel = viewModel)
             }
         }
     }
 }
 
 @Composable
-fun MonthsListFragmentScreen(viewModel: MonthsListViewModel) {
+fun HomeFragmentScreen(viewModel: HomeViewModel) {
 
 }
 
 @Composable
-fun MonthsListScreen(
-    months: List<Month>
-) {
+fun HomeScreen() {
     Scaffold {
-        Column {
-            Row {
-                
-            }
-        }
-    }
-}
-
-@Composable
-fun MonthCard(
-    title: String,
-    modifier: Modifier = Modifier
-) {
-    Card(
-        elevation = 8.dp,
-        modifier = modifier
-            .padding(),
-    ) {
         Column(
             modifier = Modifier
-                .padding(8.dp)
+                .fillMaxWidth()
         ) {
             Text(
-                text = title,
-                style = MaterialTheme.typography.h1
+                text = "Pozdravljen, Franci!",
+                style = MaterialTheme.typography.h3
             )
+
+            Card(
+                elevation = 8.dp,
+                modifier = Modifier
+                    .padding(horizontal = 16.dp)
+            ) {
+                Text(
+                    text = "Eno jabolko na dan odžene zdravnika stran!",
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(8.dp),
+                    textAlign = TextAlign.Center
+                )
+            }
         }
     }
 }
 
 @Preview
 @Composable
-fun MonthCardPreview() {
-    MonthCard(title = "Januar")
+fun HomeScreenPreview() {
+    HomeScreen()
 }
-
-
-
