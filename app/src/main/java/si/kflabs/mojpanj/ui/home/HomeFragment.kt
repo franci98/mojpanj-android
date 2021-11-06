@@ -17,6 +17,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
@@ -25,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.fragment.app.viewModels
 import si.kflabs.mojpanj.R
 import si.kflabs.mojpanj.ui.monthlyTasks.MonthsListFragmentScreen
+import si.kflabs.mojpanj.ui.theme.MojPanjTheme
 
 class HomeFragment : Fragment() {
     private val viewModel: HomeViewModel by viewModels()
@@ -35,7 +37,9 @@ class HomeFragment : Fragment() {
     ): View {
         return ComposeView(requireContext()).apply {
             setContent {
-                HomeFragmentScreen(viewModel = viewModel)
+                MojPanjTheme() {
+                    HomeFragmentScreen(viewModel = viewModel)
+                }
             }
         }
     }
@@ -43,7 +47,7 @@ class HomeFragment : Fragment() {
 
 @Composable
 fun HomeFragmentScreen(viewModel: HomeViewModel) {
-
+    HomeScreen()
 }
 
 @Composable
@@ -121,5 +125,7 @@ fun HomeScreen() {
 @Preview
 @Composable
 fun HomeScreenPreview() {
-    HomeScreen()
+    MojPanjTheme() {
+        HomeScreen()
+    }
 }

@@ -14,12 +14,14 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.viewModels
 import si.kflabs.mojpanj.R
 import si.kflabs.mojpanj.ui.home.HomeFragmentScreen
+import si.kflabs.mojpanj.ui.theme.MojPanjTheme
 
 class BeehivesListFragment : Fragment() {
 
@@ -28,10 +30,12 @@ class BeehivesListFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         return ComposeView(requireContext()).apply {
             setContent {
-                BeehivesListFragmentScreen(viewModel = viewModel)
+                MojPanjTheme() {
+                    BeehivesListFragmentScreen(viewModel = viewModel)
+                }
             }
         }
     }
@@ -39,7 +43,7 @@ class BeehivesListFragment : Fragment() {
 
 @Composable
 fun BeehivesListFragmentScreen(viewModel: BeehivesListViewModel) {
-
+    BeehivesListScreen()
 }
 
 @Composable
@@ -51,7 +55,8 @@ fun BeehivesListScreen() {
         ) {
             Text(
                 text = "Moj Čebelnjak",
-                style = MaterialTheme.typography.h4
+                style = MaterialTheme.typography.h4,
+                color = Color.Red
             )
         }
     }

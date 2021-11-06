@@ -4,6 +4,7 @@ import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import si.kflabs.mojpanj.R
@@ -18,11 +19,11 @@ val SourceSansPro = FontFamily(
     Font(R.font.sourcesanspro_black, FontWeight.W900),
 
     //Italic
-    Font(R.font.sourcesanspro_extralightitalic, FontWeight.W200),
-    Font(R.font.sourcesanspro_lightitalic, FontWeight.W300),
-    Font(R.font.sourcesanspro_semibolditalic, FontWeight.W600),
-    Font(R.font.sourcesanspro_bolditalic, FontWeight.W700),
-    Font(R.font.sourcesanspro_blackitalic, FontWeight.W900),
+    Font(R.font.sourcesanspro_extralightitalic, FontWeight.W200, style = FontStyle.Italic),
+    Font(R.font.sourcesanspro_lightitalic, FontWeight.W300, style = FontStyle.Italic),
+    Font(R.font.sourcesanspro_semibolditalic, FontWeight.W600, style = FontStyle.Italic),
+    Font(R.font.sourcesanspro_bolditalic, FontWeight.W700, style = FontStyle.Italic),
+    Font(R.font.sourcesanspro_blackitalic, FontWeight.W900, style = FontStyle.Italic),
     )
 // Set of Material typography styles to start with
 val Typography = Typography(

@@ -6,6 +6,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.home.MainActivity">
 
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragNavHost"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottomAppBar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/bottom_navigation_graph"
+        />
+
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottomAppBar"
         android:layout_width="match_parent"
@@ -33,5 +44,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_anchor="@id/bottomAppBar"
+        android:src="@drawable/ic_home"
         />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

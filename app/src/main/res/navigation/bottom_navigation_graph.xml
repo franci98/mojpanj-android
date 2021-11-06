@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/educationCategoriesListFragment"
         android:name="si.kflabs.mojpanj.ui.education.EducationCategoriesListFragment"
-        android:label="education_categories_list_fragment"
+        android:label="EducationCategoriesListFragment"
         tools:layout="@layout/education_categories_list_fragment" />
     <fragment
         android:id="@+id/monthsListFragment"
@@ -17,11 +17,16 @@
     <fragment
         android:id="@+id/beehivesListFragment"
         android:name="si.kflabs.mojpanj.ui.beehives.BeehivesListFragment"
-        android:label="beehives_list_fragment"
+        android:label="BeehivesListFragment"
         tools:layout="@layout/beehives_list_fragment" />
     <fragment
         android:id="@+id/blogFragment"
         android:name="si.kflabs.mojpanj.ui.blog.BlogFragment"
-        android:label="blog_fragment"
+        android:label="BlogFragment"
         tools:layout="@layout/blog_fragment" />
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="si.kflabs.mojpanj.ui.home.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/home_fragment" />
 </navigation>

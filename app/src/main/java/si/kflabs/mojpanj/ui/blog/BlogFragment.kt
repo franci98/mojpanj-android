@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.fragment.app.viewModels
 import si.kflabs.mojpanj.R
 import si.kflabs.mojpanj.ui.education.EducationCategoriesListFragmentScreen
+import si.kflabs.mojpanj.ui.theme.MojPanjTheme
 
 class BlogFragment : Fragment() {
     private val viewModel: BlogViewModel by viewModels()
@@ -30,7 +31,9 @@ class BlogFragment : Fragment() {
     ): View {
         return ComposeView(requireContext()).apply {
             setContent {
-                BlogFragmentScreen(viewModel = viewModel)
+                MojPanjTheme() {
+                    BlogFragmentScreen(viewModel = viewModel)
+                }
             }
         }
     }
@@ -38,7 +41,7 @@ class BlogFragment : Fragment() {
 
 @Composable
 fun BlogFragmentScreen(viewModel: BlogViewModel) {
-
+    BlogScreen()
 }
 
 @Composable

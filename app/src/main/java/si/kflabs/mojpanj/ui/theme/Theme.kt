@@ -6,16 +6,11 @@ import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
 
-private val DarkColorPalette = darkColors(
-    primary = Yellow,
-    primaryVariant = DarkYellow,
-    secondary = Brown
-)
-
 private val LightColorPalette = lightColors(
     primary = Yellow,
     primaryVariant = LightYellow,
-    secondary = Brown
+    secondary = Brown,
+    onPrimary = Gray800
 
     /* Other default colors to override
     background = Color.White,
@@ -29,11 +24,7 @@ private val LightColorPalette = lightColors(
 
 @Composable
 fun MojPanjTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable() () -> Unit) {
-    val colors = if (darkTheme) {
-        DarkColorPalette
-    } else {
-        LightColorPalette
-    }
+    val colors = LightColorPalette
 
     MaterialTheme(
         colors = colors,
