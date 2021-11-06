@@ -94,15 +94,25 @@ enum class BeeTaskMonth(
                     // itd.
                 )
                 OCTOBER -> listOf(
-                    BeeTask("", ""),
+                    BeeTask("Kontrola sumljivih družin", ""),
+                    BeeTask("Namestitev zapor za rovke in miši", ""),
+                    BeeTask("Panje stisnemo skupaj", ""),
+                    BeeTask("Ureditev notranjosti in okolice čebelnjaka", ""),
                     // itd.
                 )
                 NOVEMBER -> listOf(
-                    BeeTask("", ""),
+                    BeeTask("Zapažitev panjev", ""),
+                    BeeTask("Skrb za mir na čebelnjaku", ""),
+                    BeeTask("Pregled in sortiranje satja", ""),
+                    BeeTask("Kuhanje voščin", ""),
                     // itd.
                 )
                 DECEMBER -> listOf(
-                    BeeTask("", ""),
+                    BeeTask("Občasni obhod čebelnjaka", ""),
+                    BeeTask("Nastavitev vab in pasti za glodalce", ""),
+                    BeeTask("Planiranje za naslednjo čebelarsko sezono", ""),
+                    BeeTask("Izobraževanje", ""),
+                    BeeTask("Prodaja medu", ""),
                     // itd.
                 )
             }
