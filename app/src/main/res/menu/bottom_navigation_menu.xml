@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/educationCategoriesListFragment"
+        android:icon="@drawable/ic_book"
+        android:title=""
+        />
+    <item
+        android:id="@+id/monthsListFragment"
+        android:icon="@drawable/ic_calendar"
+        android:title=""
+        />
+    <item
+        android:id="@+id/placeholder"
+        android:title="" />
+
+    <item
+        android:id="@+id/beehivesListFragment"
+        android:icon="@drawable/ic_beehive"
+        android:title=""
+        />
+    <item
+        android:id="@+id/blogFragment"
+        android:icon="@drawable/ic_blog"
+        android:title=""
+        />
+
+</menu>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_navigation_graph"
+    app:startDestination="@id/educationCategoriesListFragment">
+
+    <fragment
+        android:id="@+id/educationCategoriesListFragment"
+        android:name="si.kflabs.mojpanj.ui.education.EducationCategoriesListFragment"
+        android:label="education_categories_list_fragment"
+        tools:layout="@layout/education_categories_list_fragment" />
+    <fragment
+        android:id="@+id/monthsListFragment"
+        android:name="si.kflabs.mojpanj.ui.monthlyTasks.MonthsListFragment"
+        android:label="MonthsListFragment" />
+    <fragment
+        android:id="@+id/beehivesListFragment"
+        android:name="si.kflabs.mojpanj.ui.beehives.BeehivesListFragment"
+        android:label="beehives_list_fragment"
+        tools:layout="@layout/beehives_list_fragment" />
+    <fragment
+        android:id="@+id/blogFragment"
+        android:name="si.kflabs.mojpanj.ui.blog.BlogFragment"
+        android:label="blog_fragment"
+        tools:layout="@layout/blog_fragment" />
+</navigation>
