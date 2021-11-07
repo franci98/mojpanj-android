@@ -6,10 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
@@ -19,6 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
@@ -55,10 +56,20 @@ fun HomeScreen() {
     Scaffold {
         Column(
             modifier = Modifier
+                .background(Color(0xFFC2EAEE))
                 .padding(horizontal = 8.dp)
-                .fillMaxWidth(),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
+                .fillMaxSize(),
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
+
+                Image(
+                    painter = painterResource(id = R.drawable.icon),
+                    contentDescription = null,
+                    modifier = Modifier
+                        .size(128.dp)
+                        .background(Color(0xFFC2EAEE))
+                )
             Text(
                 text = "Pozdravljen, Franci!",
                 style = MaterialTheme.typography.h4
@@ -73,7 +84,7 @@ fun HomeScreen() {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(8.dp),
-                    style = MaterialTheme.typography.caption,
+                    style = MaterialTheme.typography.h5,
                     textAlign = TextAlign.Center
                 )
             }
@@ -97,13 +108,13 @@ fun HomeScreen() {
                         Text(
                             text = "Očistiti sneg",
                             modifier = Modifier,
-                            style = MaterialTheme.typography.body2,
+                            style = MaterialTheme.typography.h5,
                             textAlign = TextAlign.Center
                         )
                         Text(
                             text = "Priprava satnic",
                             modifier = Modifier,
-                            style = MaterialTheme.typography.body2,
+                            style = MaterialTheme.typography.h5,
                             textAlign = TextAlign.Center
                         )
                     }
@@ -116,7 +127,26 @@ fun HomeScreen() {
                     style = MaterialTheme.typography.h6
                 )
 
-
+                Card(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    elevation = 8.dp,
+                    shape = RoundedCornerShape(16.dp)
+                ) {
+                    Column(
+                        modifier = Modifier.padding(8.dp)
+                    ) {
+                        Text(
+                            text = "Api Seminar",
+                            style = MaterialTheme.typography.subtitle1
+                        )
+                        Text(
+                            text = "O turizmu in še več 12. 11. 2021",
+                            style = MaterialTheme.typography.body1,
+                            maxLines = 4
+                        )
+                    }
+                }
             }
         }
     }

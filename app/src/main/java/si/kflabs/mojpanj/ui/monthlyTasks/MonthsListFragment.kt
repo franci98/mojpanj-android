@@ -10,9 +10,12 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.MoreHoriz
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
@@ -78,8 +81,8 @@ fun MonthsListScreen(
                         title = month.title.substring(0..2).uppercase(),
                         modifier = Modifier
                             .weight(.3f)
-                            .size(64.dp)
-                            .clickable { onMonthChanged(month) }
+                            .clickable { onMonthChanged(month) },
+                        isSelected = (month == selectedMonth)
                     )
                 }
             }
@@ -90,20 +93,50 @@ fun MonthsListScreen(
                 Card(backgroundColor = Gray200) {
                     Column(modifier = Modifier
                         .fillMaxSize()
-                        .padding(8.dp)
+                        .padding(8.dp),
+                        verticalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
                         Text(
                             text = selectedMonth.title,
                             style = MaterialTheme.typography.h6,
                         )
                         selectedMonth.tasks.forEach { task ->
-                            Text(
-                                text = task.title,
-                                style = MaterialTheme.typography.subtitle1,
-                            )
-                            Text(text = task.description,
-                                    style = MaterialTheme.typography.body1,
-                            )
+                            Card(
+                                elevation = 8.dp,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                            ) {
+                                Text(
+                                    text = task.title,
+                                    style = MaterialTheme.typography.subtitle1,
+                                    modifier = Modifier.padding(8.dp)
+                                )
+                                Text(text = task.description,
+                                        style = MaterialTheme.typography.body1,
+                                )
+                            }
+                        }
+
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(8.dp)
+                                .padding(top = 16.dp),
+                            horizontalArrangement = Arrangement.SpaceBetween
+                        ) {
+                            Button(
+                                onClick = { /*TODO*/ },
+                                shape = RoundedCornerShape(40.dp)
+                            ) {
+                                Icon(Icons.Default.MoreHoriz, contentDescription = null, tint = Gray800)
+                            }
+                            Button(
+                                onClick = { /*TODO*/ },
+                                shape = RoundedCornerShape(40.dp)
+                            ) {
+                                Icon(Icons.Default.PlayArrow, contentDescription = null, tint = Gray800)
+                                Text(text = "Play")
+                            }
                         }
                     }
                 }
@@ -115,24 +148,21 @@ fun MonthsListScreen(
 @Composable
 fun MonthCard(
     title: String,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    isSelected: Boolean = false,
 ) {
     Card(
         modifier = modifier
-            .padding(4.dp),
-        backgroundColor = Gray300
+            .padding(8.dp),
+        backgroundColor = if(isSelected) MaterialTheme.colors.primary else Gray300,
+        shape = RoundedCornerShape(16.dp)
     ) {
         Column(
             modifier = modifier
                 .fillMaxWidth()
-                .padding(8.dp),
+                .padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Icon(
-                Icons.Default.Person,
-                contentDescription = null,
-                tint = Gray800
-            )
             Text(
                 text = title,
                 color = Gray800,
