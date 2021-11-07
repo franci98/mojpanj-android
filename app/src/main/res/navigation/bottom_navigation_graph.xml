@@ -29,4 +29,9 @@
         android:name="si.kflabs.mojpanj.ui.home.HomeFragment"
         android:label="HomeFragment"
         tools:layout="@layout/home_fragment" />
+    <fragment
+        android:id="@+id/outbreaksFragment"
+        android:name="si.kflabs.mojpanj.ui.outbreaks.OutbreaksFragment"
+        android:label="outbreaks_fragment"
+        tools:layout="@layout/outbreaks_fragment" />
 </navigation>

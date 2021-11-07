@@ -16,7 +16,7 @@
         android:title="" />
 
     <item
-        android:id="@+id/beehivesListFragment"
+        android:id="@+id/outbreaksFragment"
         android:icon="@drawable/ic_beehive"
         android:title=""
         />

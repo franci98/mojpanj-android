@@ -45,7 +45,7 @@ val Typography = Typography(
     ),
     h4 = TextStyle(
         fontWeight = FontWeight.Normal,
-        fontSize = 37.sp,
+        fontSize = 26.sp,
         letterSpacing = 0.25.sp
     ),
     h5 = TextStyle(
@@ -59,13 +59,13 @@ val Typography = Typography(
         letterSpacing = 0.15.sp
     ),
     subtitle1 = TextStyle(
-        fontWeight = FontWeight.Normal,
-        fontSize = 17.sp,
+        fontWeight = FontWeight.Bold,
+        fontSize = 20.sp,
         letterSpacing = 0.15.sp
     ),
     subtitle2 = TextStyle(
         fontWeight = FontWeight.Medium,
-        fontSize = 15.sp,
+        fontSize = 20.sp,
         letterSpacing = 0.1.sp
     ),
     body1 = TextStyle(
@@ -85,7 +85,7 @@ val Typography = Typography(
     ),
     caption = TextStyle(
         fontWeight = FontWeight.Normal,
-        fontSize = 13.sp,
+        fontSize = 16.sp,
         letterSpacing = 0.4.sp
     ),
     overline = TextStyle(

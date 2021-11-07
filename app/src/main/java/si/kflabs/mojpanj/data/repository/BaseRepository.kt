@@ -3,6 +3,7 @@ package si.kflabs.mojpanj.data.repository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
+import si.kflabs.mojpanj.data.domain.model.EducationCategory
 import si.kflabs.mojpanj.data.remote.Resource
 
 abstract class BaseRepository {

@@ -4,17 +4,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.tooling.preview.Preview
@@ -59,7 +61,8 @@ fun BlogScreen(
     Scaffold {
         Column(modifier = Modifier
             .fillMaxWidth()
-            .padding(8.dp)
+            .padding(8.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
                 text = "Blog",
@@ -70,10 +73,31 @@ fun BlogScreen(
                 is Resource.Failure -> Text(text = "Network error")
                 Resource.Loading -> Text(text = "Loading")
                 is Resource.Success -> {
-                    LazyColumn {
+                    LazyColumn(
+                        verticalArrangement = Arrangement.spacedBy(8.dp),
+                        modifier = Modifier.padding(bottom = 24.dp)
+                    ) {
                         items(posts.value) { post ->
-                            Text(text = post.title)
-                            Text(text = post.shortDescription)
+                            Card(
+                                modifier = Modifier
+                                    .fillMaxWidth(),
+                                elevation = 8.dp,
+                                shape = RoundedCornerShape(16.dp)
+                            ) {
+                                Column(
+                                    modifier = Modifier.padding(8.dp)
+                                ) {
+                                    Text(
+                                        text = post.title,
+                                        style = MaterialTheme.typography.subtitle1
+                                    )
+                                    Text(
+                                        text = post.shortDescription,
+                                        style = MaterialTheme.typography.body1,
+                                        maxLines = 4
+                                    )
+                                }
+                            }
                         }
                     }
                 }

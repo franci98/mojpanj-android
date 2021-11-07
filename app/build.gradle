@@ -4,6 +4,7 @@ plugins {
     id 'kotlin-kapt'
     id 'kotlin-android-extensions'
     id 'dagger.hilt.android.plugin'
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 }
 
 android {
@@ -70,6 +71,7 @@ dependencies {
 
     // Integration with observables
     implementation 'androidx.compose.runtime:runtime-livedata:1.0.4'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
 
     // Hilt
     def hilt_version = "2.37"
@@ -91,6 +93,14 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-moshi:2.9.0"
     kapt "com.squareup.moshi:moshi-kotlin-codegen:1.12.0"
     implementation "org.jetbrains.kotlin:kotlin-reflect:1.5.31"
+
+    // Google Maps
+    implementation 'com.google.android.gms:play-services-maps:18.0.0'
+
+    // Material design icons
+    implementation 'androidx.compose.material:material-icons-core:1.0.5'
+    implementation 'androidx.compose.material:material-icons-extended:1.0.5'
+
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
