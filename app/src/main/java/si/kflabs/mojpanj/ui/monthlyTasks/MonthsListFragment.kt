@@ -6,8 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -16,17 +17,18 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MoreHoriz
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.PlayArrow
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.viewModels
 import si.kflabs.mojpanj.R
+import si.kflabs.mojpanj.data.domain.BeeTask
 import si.kflabs.mojpanj.data.domain.BeeTaskMonth
 import si.kflabs.mojpanj.ui.theme.*
 import java.time.Month
@@ -65,6 +67,7 @@ fun MonthsListScreen(
     selectedMonth: BeeTaskMonth,
     onMonthChanged: (BeeTaskMonth) -> Unit
 ) {
+    val scrollState = rememberScrollState()
     Scaffold() {
         Column(modifier = Modifier
             .fillMaxWidth(),
@@ -73,74 +76,102 @@ fun MonthsListScreen(
         ) {
             Text(
                 text = "Mesečna opravila",
-                style = MaterialTheme.typography.h4
+                style = MaterialTheme.typography.h4,
+                modifier =Modifier.padding(vertical = 8.dp)
             )
-            LazyRow {
-                items(items = BeeTaskMonth.values()) { month ->
-                    MonthCard(
-                        title = month.title.substring(0..2).uppercase(),
-                        modifier = Modifier
-                            .weight(.3f)
-                            .clickable { onMonthChanged(month) },
-                        isSelected = (month == selectedMonth)
-                    )
+
+            Column(
+                modifier = Modifier
+                    .background(Gray200)
+                ,
+                ) {
+                LazyRow {
+                    items(items = BeeTaskMonth.values()) { month ->
+                        MonthCard(
+                            title = month.title.substring(0..2).uppercase(),
+                            modifier = Modifier
+                                .weight(.3f)
+                                .clickable { onMonthChanged(month) },
+                            isSelected = (month == selectedMonth)
+                        )
+                    }
                 }
-            }
-            Column(modifier = Modifier
-                .fillMaxSize()
-                .padding(8.dp)
-            ) {
-                Card(backgroundColor = Gray200) {
+                Column(modifier = Modifier
+                    .fillMaxSize()
+                    .padding(8.dp)
+                ) {
                     Column(modifier = Modifier
                         .fillMaxSize()
                         .padding(8.dp),
-                        verticalArrangement = Arrangement.spacedBy(8.dp)
+                        verticalArrangement = Arrangement.spacedBy(16.dp)
                     ) {
                         Text(
                             text = selectedMonth.title,
-                            style = MaterialTheme.typography.h6,
+                            style = MaterialTheme.typography.h5,
                         )
-                        selectedMonth.tasks.forEach { task ->
-                            Card(
-                                elevation = 8.dp,
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                            ) {
-                                Text(
-                                    text = task.title,
-                                    style = MaterialTheme.typography.subtitle1,
-                                    modifier = Modifier.padding(8.dp)
-                                )
-                                Text(text = task.description,
-                                        style = MaterialTheme.typography.body1,
-                                )
-                            }
-                        }
-
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(8.dp)
-                                .padding(top = 16.dp),
-                            horizontalArrangement = Arrangement.SpaceBetween
+                        LazyColumn(
+                            verticalArrangement = Arrangement.spacedBy(16.dp)
                         ) {
-                            Button(
-                                onClick = { /*TODO*/ },
-                                shape = RoundedCornerShape(40.dp)
-                            ) {
-                                Icon(Icons.Default.MoreHoriz, contentDescription = null, tint = Gray800)
+                            items(items = selectedMonth.tasks) { task ->
+                                MonthlyTaskListItem(task = task)
                             }
-                            Button(
-                                onClick = { /*TODO*/ },
-                                shape = RoundedCornerShape(40.dp)
-                            ) {
-                                Icon(Icons.Default.PlayArrow, contentDescription = null, tint = Gray800)
-                                Text(text = "Play")
+                            item {
+                                Row(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(8.dp)
+                                        .padding(top = 16.dp),
+                                    horizontalArrangement = Arrangement.SpaceBetween
+                                ) {
+                                    Button(
+                                        onClick = { /*TODO*/ },
+                                        shape = RoundedCornerShape(40.dp)
+                                    ) {
+                                        Icon(Icons.Default.MoreHoriz, contentDescription = null, tint = Gray800)
+                                    }
+                                    Button(
+                                        onClick = { /*TODO*/ },
+                                        shape = RoundedCornerShape(40.dp)
+                                    ) {
+                                        Icon(Icons.Default.PlayArrow, contentDescription = null, tint = Gray800)
+                                        Text(text = "Play")
+                                    }
+                                }
+                            }
+                            item {
+                                Spacer(modifier = Modifier
+                                    .height(128.dp)
+                                    .fillMaxWidth())
                             }
                         }
                     }
                 }
             }
+        }
+    }
+}
+
+@Composable
+fun MonthlyTaskListItem(task: BeeTask) {
+    var checked by remember { mutableStateOf(false) }
+    Card(
+        elevation = 8.dp,
+        modifier = Modifier
+            .fillMaxWidth()
+    ) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.padding(start = 16.dp)
+        ) {
+            Checkbox(
+                checked = checked,
+                onCheckedChange = { checked = it  }
+            )
+            Text(
+                text = task.title,
+                style = MaterialTheme.typography.subtitle1,
+                modifier = Modifier.padding(16.dp)
+            )
         }
     }
 }
@@ -154,8 +185,9 @@ fun MonthCard(
     Card(
         modifier = modifier
             .padding(8.dp),
-        backgroundColor = if(isSelected) MaterialTheme.colors.primary else Gray300,
-        shape = RoundedCornerShape(16.dp)
+        shape = RoundedCornerShape(16.dp),
+        backgroundColor = if(isSelected) MaterialTheme.colors.primary else Color.White,
+        border = BorderStroke(2.dp, MaterialTheme.colors.primary)
     ) {
         Column(
             modifier = modifier

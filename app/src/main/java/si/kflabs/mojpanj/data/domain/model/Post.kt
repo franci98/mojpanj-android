@@ -7,7 +7,7 @@ data class Post(
     val title: String,
     val shortDescription: String,
     val content: String,
-    val createdAt: Calendar,
+    val createdAt: Date,
 ) {
 
 }

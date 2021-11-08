@@ -25,6 +25,7 @@ import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import si.kflabs.mojpanj.data.domain.model.EducationCategory
 import si.kflabs.mojpanj.data.remote.Resource
+import si.kflabs.mojpanj.ui.quiz.QuizActivity
 import si.kflabs.mojpanj.ui.theme.Brown
 import si.kflabs.mojpanj.ui.theme.Gray800
 import si.kflabs.mojpanj.ui.theme.MojPanjTheme
@@ -53,12 +54,18 @@ class EducationCategoriesListFragment : Fragment() {
         startActivity(intent)
     }
 
+    private fun openQuizClick() {
+        val intent = Intent(requireContext(), QuizActivity::class.java)
+        startActivity(intent)
+    }
+
     @Composable
     fun EducationCategoriesListFragmentScreen(viewModel: EducationCategoriesListViewModel) {
         val educationCategories by viewModel.educationCategories.observeAsState(initial = Resource.Loading)
         EducationCategoriesListScreen(
             educationCategories = educationCategories,
-            onEducationCategoryClick = this::openEducationCategoryClick
+            onEducationCategoryClick = this::openEducationCategoryClick,
+            onQuizClick = this::openQuizClick
         )
     }
 }
@@ -67,7 +74,8 @@ class EducationCategoriesListFragment : Fragment() {
 @Composable
 fun EducationCategoriesListScreen(
     educationCategories: Resource<List<EducationCategory>>,
-    onEducationCategoryClick: (EducationCategory) -> Unit
+    onEducationCategoryClick: (EducationCategory) -> Unit,
+    onQuizClick: () -> Unit,
 ) {
     Scaffold {
         Column(modifier = Modifier
@@ -113,7 +121,7 @@ fun EducationCategoriesListScreen(
                                         Icon(Icons.Default.MoreHoriz, contentDescription = null, tint = Gray800)
                                     }
                                     Button(
-                                        onClick = { /*TODO*/ },
+                                        onClick = { onQuizClick() },
                                         shape = RoundedCornerShape(40.dp)
                                     ) {
                                         Icon(Icons.Default.PlayArrow, contentDescription = null, tint = Gray800)
@@ -132,6 +140,6 @@ fun EducationCategoriesListScreen(
 @Preview
 fun EducationCategoriesListScreenPreview() {
     MojPanjTheme() {
-        EducationCategoriesListScreen(educationCategories = Resource.Loading, onEducationCategoryClick = {})
+        EducationCategoriesListScreen(educationCategories = Resource.Loading, onEducationCategoryClick = {}, onQuizClick = {})
     }
 }

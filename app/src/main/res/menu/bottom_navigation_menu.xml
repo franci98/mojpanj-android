@@ -12,12 +12,12 @@
         android:title=""
         />
     <item
-        android:id="@+id/placeholder"
+        android:id="@+id/homeFragment"
         android:title="" />
 
     <item
         android:id="@+id/outbreaksFragment"
-        android:icon="@drawable/ic_beehive"
+        android:icon="@drawable/ic_coronavirus"
         android:title=""
         />
     <item

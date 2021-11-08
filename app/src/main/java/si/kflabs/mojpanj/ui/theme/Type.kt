@@ -11,20 +11,13 @@ import si.kflabs.mojpanj.R
 
 val SourceSansPro = FontFamily(
     //Normal
-    Font(R.font.sourcesanspro_extralight, FontWeight.W200),
-    Font(R.font.sourcesanspro_light, FontWeight.W300),
-    Font(R.font.sourcesanspro_regular, FontWeight.W400),
-    Font(R.font.sourcesanspro_semibold, FontWeight.W600),
-    Font(R.font.sourcesanspro_bold, FontWeight.W700),
-    Font(R.font.sourcesanspro_black, FontWeight.W900),
-
-    //Italic
-    Font(R.font.sourcesanspro_extralightitalic, FontWeight.W200, style = FontStyle.Italic),
-    Font(R.font.sourcesanspro_lightitalic, FontWeight.W300, style = FontStyle.Italic),
-    Font(R.font.sourcesanspro_semibolditalic, FontWeight.W600, style = FontStyle.Italic),
-    Font(R.font.sourcesanspro_bolditalic, FontWeight.W700, style = FontStyle.Italic),
-    Font(R.font.sourcesanspro_blackitalic, FontWeight.W900, style = FontStyle.Italic),
-    )
+    Font(R.font.khand_light, FontWeight.W200),
+    Font(R.font.khand_light, FontWeight.W300),
+    Font(R.font.khand_regular, FontWeight.W400),
+    Font(R.font.khand_medium, FontWeight.W500),
+    Font(R.font.khand_semibold, FontWeight.W600),
+    Font(R.font.khand_bold, FontWeight.W700),
+)
 // Set of Material typography styles to start with
 val Typography = Typography(
     defaultFontFamily = SourceSansPro,
@@ -40,7 +33,7 @@ val Typography = Typography(
     ),
     h3 = TextStyle(
         fontWeight = FontWeight.Normal,
-        fontSize = 52.sp,
+        fontSize = 36.sp,
         letterSpacing = 0.sp
     ),
     h4 = TextStyle(
@@ -59,12 +52,12 @@ val Typography = Typography(
         letterSpacing = 0.15.sp
     ),
     subtitle1 = TextStyle(
-        fontWeight = FontWeight.Bold,
+        fontWeight = FontWeight.Medium,
         fontSize = 20.sp,
         letterSpacing = 0.15.sp
     ),
     subtitle2 = TextStyle(
-        fontWeight = FontWeight.Medium,
+        fontWeight = FontWeight.Normal,
         fontSize = 20.sp,
         letterSpacing = 0.1.sp
     ),

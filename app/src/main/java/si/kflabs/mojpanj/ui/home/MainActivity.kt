@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
             val navHostFragment =
                 supportFragmentManager.findFragmentById(R.id.fragNavHost) as NavHostFragment
             val navController = navHostFragment.navController
+            bottomNavigationView.selectedItemId = R.id.homeFragment
             navController.navigate(R.id.homeFragment)
         }
     }
@@ -30,6 +31,11 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fragNavHost) as NavHostFragment
         val navController = navHostFragment.navController
+        val graphInflater = navHostFragment.navController.navInflater
+        val navGraph = graphInflater.inflate(R.navigation.bottom_navigation_graph)
+        navGraph.startDestination = R.id.homeFragment
+        navController.graph = navGraph
+        // Setting Navigation Controller with the BottomNavigationView
         bottomNavigationView.setupWithNavController(navController)
     }
 }
