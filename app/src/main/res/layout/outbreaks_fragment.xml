@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:text="Izbruhi HGČZ"
         android:textSize="26sp"
+        android:textColor="@color/black"
         android:fontFamily="@font/sourcesanspro_regular"
         />
 

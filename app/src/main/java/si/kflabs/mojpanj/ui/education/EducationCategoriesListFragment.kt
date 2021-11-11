@@ -6,11 +6,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Book
 import androidx.compose.material.icons.filled.MoreHoriz
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.runtime.Composable
@@ -18,6 +21,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -26,9 +30,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import si.kflabs.mojpanj.data.domain.model.EducationCategory
 import si.kflabs.mojpanj.data.remote.Resource
 import si.kflabs.mojpanj.ui.quiz.QuizActivity
-import si.kflabs.mojpanj.ui.theme.Brown
-import si.kflabs.mojpanj.ui.theme.Gray800
-import si.kflabs.mojpanj.ui.theme.MojPanjTheme
+import si.kflabs.mojpanj.ui.theme.*
 
 @AndroidEntryPoint
 class EducationCategoriesListFragment : Fragment() {
@@ -79,57 +81,77 @@ fun EducationCategoriesListScreen(
 ) {
     Scaffold {
         Column(modifier = Modifier
-            .fillMaxWidth()
-            .padding(8.dp),
+            .fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
                 text = "Priročnik",
-                style = MaterialTheme.typography.h5
+                style = MaterialTheme.typography.h5,
+                modifier = Modifier.padding(vertical = 8.dp)
             )
             Column(
                 modifier = Modifier
-                    .fillMaxSize(),
-                verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterVertically),
-                horizontalAlignment = Alignment.CenterHorizontally
+                    .fillMaxWidth()
+                    .fillMaxHeight(.9f)
+                    .background(Gray200)
+                    .padding(16.dp),
+                verticalArrangement = Arrangement.spacedBy(8.dp),
             ) {
-                (educationCategories as? Resource.Success)?.value?.forEach { educationCategory ->
-
-                        Card(
-                            elevation = 8.dp,
-                            shape = RoundedCornerShape(16.dp),
+                (educationCategories as? Resource.Success)?.value?.let { educationCategories ->
+                    (0 until (educationCategories.size / 2)).forEach { row ->
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.spacedBy(8.dp)
                         ) {
-                            Column(modifier = Modifier
-                                .padding(8.dp),
-                                horizontalAlignment = Alignment.CenterHorizontally
-                            ) {
-                                Text(
-                                    text = educationCategory.title,
-                                    style = MaterialTheme.typography.h4
-                                )
-                                Row(
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .padding(8.dp)
-                                        .padding(top = 16.dp),
-                                    horizontalArrangement = Arrangement.SpaceBetween
-                                ) {
-                                    Button(
-                                        onClick = { onEducationCategoryClick(educationCategory) },
-                                        shape = RoundedCornerShape(40.dp)
+                            (0 until 2).forEach { col ->
+                                educationCategories[row * 2 + col]?.let { educationCategory ->
+                                    Card(
+                                        elevation = 8.dp,
+                                        shape = RoundedCornerShape(16.dp),
+                                        modifier = Modifier
+                                            .fillMaxWidth(.5f * (col + 1))
+                                            .fillMaxHeight(.5f * (row + 1))
+                                            .clickable { onEducationCategoryClick(educationCategory) }
                                     ) {
-                                        Icon(Icons.Default.MoreHoriz, contentDescription = null, tint = Gray800)
-                                    }
-                                    Button(
-                                        onClick = { onQuizClick() },
-                                        shape = RoundedCornerShape(40.dp)
-                                    ) {
-                                        Icon(Icons.Default.PlayArrow, contentDescription = null, tint = Gray800)
-                                        Text(text = "Play")
+                                        Column(modifier = Modifier
+                                            .padding(8.dp),
+                                            horizontalAlignment = Alignment.CenterHorizontally,
+                                            verticalArrangement = Arrangement.SpaceBetween
+                                        ) {
+                                            Text(
+                                                text = educationCategory.title,
+                                                style = MaterialTheme.typography.h6
+                                            )
+                                            Icon(educationCategory.icon,
+                                                contentDescription = null,
+                                                modifier = Modifier
+                                                    .size(100.dp)
+                                                    .clip(CircleShape)
+                                                    .background(MaterialTheme.colors.primary.copy(.3f))
+                                                    .padding(32.dp)
+                                                ,
+                                                tint = MaterialTheme.colors.primary
+                                            )
+                                            Column(
+                                                modifier = Modifier
+                                                    .fillMaxWidth()
+                                                    .padding(8.dp)
+                                                    .padding(top = 16.dp),
+                                            ) {
+                                                Button(
+                                                    onClick = { onQuizClick() },
+                                                    shape = RoundedCornerShape(40.dp),
+                                                    modifier = Modifier.fillMaxWidth()
+                                                ) {
+                                                    Icon(Icons.Default.PlayArrow, contentDescription = null, tint = Gray800)
+                                                }
+                                            }
+                                        }
                                     }
                                 }
                             }
                         }
+                    }
                 }
             }
         }

@@ -66,7 +66,7 @@ class OutbreaksFragment : Fragment(), OnMapReadyCallback {
             MojPanjTheme() {
                 Column(modifier = Modifier
                     .fillMaxSize()
-                    .padding(10.dp)
+                    .padding(8.dp)
                     .padding(bottom = 64.dp),
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
